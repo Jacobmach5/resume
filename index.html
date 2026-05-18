@@ -1,1 +1,235 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex, nofollow, noarchive, noimageindex" />
+  <title>Verification — Portfolio</title>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f0f0f;
+      --surface: #181818;
+      --border: #2a2a2a;
+      --text: #e8e2d9;
+      --muted: #6b6560;
+      --amber: #f0900a;
+      --amber-dim: #a86106;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .glow {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(240,144,10,0.07) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 3rem 3.5rem;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber);
+      background: rgba(240,144,10,0.1);
+      border: 1px solid rgba(240,144,10,0.2);
+      border-radius: 100px;
+      padding: 4px 14px;
+      margin-bottom: 1.75rem;
+    }
+
+    .tag::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+
+    h1 span { color: var(--amber); }
+
+    p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .recaptcha-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 0.85rem 2rem;
+      background: var(--amber);
+      color: #0f0f0f;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.02em;
+    }
+
+    .btn:hover { background: #d97d08; }
+    .btn:active { transform: scale(0.98); }
+    .btn:disabled { background: var(--border); color: var(--muted); cursor: not-allowed; }
+
+    .footer-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 1.5rem;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 1.5rem 0;
+    }
+
+    .lock-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(240,144,10,0.1);
+      border: 1px solid rgba(240,144,10,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+
+    .lock-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--amber);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="glow"></div>
+
+  <div class="card">
+    <div class="lock-icon">
+      <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    </div>
+    <div class="tag">Access Required</div>
+    <h1>Human <span>Verification</span></h1>
+    <p>This portfolio is intended for employers and recruiters. Please complete the verification below to continue.</p>
+
+    <div class="recaptcha-wrap">
+      <!--
+        =====================================================
+        STEP 1: Get your free reCAPTCHA keys at:
+        https://www.google.com/recaptcha/admin/create
+        - Choose "reCAPTCHA v2 → I'm not a robot checkbox"
+        - Add your domain (e.g. yourname.github.io)
+        STEP 2: Replace YOUR_SITE_KEY_HERE below
+        =====================================================
+      -->
+      <div class="g-recaptcha"
+           data-sitekey="6Lc9ne8sAAAAAE2W_k1GocW3PwT76WVK4c3muW2l"
+           data-theme="dark"
+           data-callback="onCaptchaSolved"
+           data-expired-callback="onCaptchaExpired">
+      </div>
+    </div>
+
+    <button class="btn" id="enter-btn" disabled onclick="enterSite()">
+      Enter Portfolio
+    </button>
+
+    <hr class="divider" />
+    <p class="footer-note">Protected against automated scraping. Not indexed by search engines.</p>
+  </div>
+
+  <script>
+    function onCaptchaSolved(token) {
+      document.getElementById('enter-btn').disabled = false;
+    }
+
+    function onCaptchaExpired() {
+      document.getElementById('enter-btn').disabled = true;
+    }
+
+    function enterSite() {
+      const token = grecaptcha.getResponse();
+      if (token) {
+        window.location.href = 'resume.html';
+      }
+    }
+  </script>
+</body>
+</html>
