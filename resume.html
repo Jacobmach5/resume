@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex, nofollow, noarchive, noimageindex" />
+  <title>Jacob Martinez — IT Professional</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f0f0f;
+      --surface: #181818;
+      --surface2: #1e1e1e;
+      --border: #252525;
+      --border2: #2f2f2f;
+      --text: #e8e2d9;
+      --muted: #6b6560;
+      --muted2: #4a4540;
+      --amber: #f0900a;
+      --amber-dim: #a86106;
+      --amber-faint: rgba(240,144,10,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── Layout ── */
+    .layout {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      grid-template-rows: auto 1fr;
+      gap: 0;
+      min-height: 100vh;
+    }
+
+    /* ── Header (full width) ── */
+    header {
+      grid-column: 1 / -1;
+      padding: 3rem 0 2.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .header-left {}
+
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1rem;
+    }
+    .availability::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    h1 .last { color: var(--amber); }
+
+    .title-line {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 0.6rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .contact-item svg {
+      width: 14px; height: 14px;
+      stroke: var(--amber-dim);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+    .contact-item a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .contact-item a:hover { color: var(--amber); }
+
+    /* ── Sidebar ── */
+    aside {
+      padding: 2.5rem 2.5rem 2.5rem 0;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    /* ── Main ── */
+    main {
+      padding: 2.5rem 0 2.5rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    /* ── Section titles ── */
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border2);
+    }
+
+    /* ── Skills ── */
+    .skill-group { margin-bottom: 1.25rem; }
+    .skill-group:last-child { margin-bottom: 0; }
+
+    .skill-group-name {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .skill-tag {
+      font-size: 0.75rem;
+      font-weight: 400;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      color: var(--text);
+      letter-spacing: 0.01em;
+    }
+
+    .skill-tag.highlight {
+      background: var(--amber-faint);
+      border-color: rgba(240,144,10,0.25);
+      color: var(--amber);
+    }
+
+    /* ── Certifications ── */
+    .cert {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .cert:last-child { margin-bottom: 0; }
+    .cert-icon {
+      width: 28px; height: 28px;
+      background: var(--amber-faint);
+      border: 1px solid rgba(240,144,10,0.2);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .cert-icon svg {
+      width: 14px; height: 14px;
+      stroke: var(--amber);
+      fill: none; stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .cert-name { font-size: 0.8rem; font-weight: 500; color: var(--text); line-height: 1.3; }
+    .cert-issuer { font-size: 0.72rem; color: var(--muted); }
+
+    /* ── Education sidebar ── */
+    .edu-item { margin-bottom: 1rem; }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-degree { font-size: 0.85rem; font-weight: 500; color: var(--text); }
+    .edu-school { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+    .edu-year { font-size: 0.72rem; color: var(--muted2); margin-top: 2px; }
+
+    /* ── Experience ── */
+    .job {
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .job:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .job-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .job-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .job-company {
+      font-size: 0.82rem;
+      color: var(--amber);
+      margin-top: 2px;
+      font-weight: 400;
+    }
+
+    .job-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .job-date {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+
+    .job-type {
+      font-size: 0.68rem;
+      padding: 2px 8px;
+      border-radius: 100px;
+      background: var(--amber-faint);
+      border: 1px solid rgba(240,144,10,0.2);
+      color: var(--amber);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .job-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin: 0.75rem 0;
+      line-height: 1.7;
+    }
+
+    .job-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .job-bullets li {
+      font-size: 0.83rem;
+      color: #9e9890;
+      padding-left: 1.1rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .job-bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--amber);
+      font-size: 0.7rem;
+      top: 4px;
+    }
+
+    /* ── Projects ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+      transition: border-color 0.2s;
+    }
+    .project-card:hover { border-color: var(--border2); }
+
+    .project-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .project-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .project-tag {
+      font-size: 0.68rem;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      grid-column: 1 / -1;
+      border-top: 1px solid var(--border);
+      padding: 1.25rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer span { font-size: 0.72rem; color: var(--muted2); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .layout {
+        grid-template-columns: 1fr;
+        padding: 0 1.25rem;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem 0 1.75rem;
+      }
+      .header-right { align-items: flex-start; }
+      aside {
+        padding: 2rem 0;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      main { padding: 2rem 0; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- ── HEADER ── -->
+  <header>
+    <div class="header-left">
+      <div class="availability">Open to Opportunities</div>
+      <h1>Jacob <span class="last">Martinez</span></h1>
+      <div class="title-line">IT Manager &nbsp;·&nbsp; Systems & Network Administration</div>
+    </div>
+    <div class="header-right">
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="mailto:jacobemartinez1@gmail.com">jacobemartinez1@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 5.93 5.93l1.62-1.62a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>580.467.4642</span>
+      </div>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Oklahoma City, OK</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── SIDEBAR ── -->
+  <aside>
+
+    <!-- Skills -->
+    <div>
+      <div class="section-title">Skills</div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Networking</div>
+        <div class="skill-tags">
+          <span class="skill-tag highlight">TCP/IP, DNS, DHCP</span>
+          <span class="skill-tag highlight">VLANs</span>
+          <span class="skill-tag">Firewall Rules & Ports</span>
+          <span class="skill-tag">UniFi Networking</span>
+          <span class="skill-tag">Cisco Meraki</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Systems</div>
+        <div class="skill-tags">
+          <span class="skill-tag highlight">Windows Server 2016–2022</span>
+          <span class="skill-tag highlight">Active Directory & GPO</span>
+          <span class="skill-tag">Windows 10/11</span>
+          <span class="skill-tag">Hyper-V</span>
+          <span class="skill-tag">Dell PowerEdge & RAID</span>
+          <span class="skill-tag">SQL Server Express</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Cloud & Security</div>
+        <div class="skill-tags">
+          <span class="skill-tag highlight">Microsoft 365</span>
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">PCI Compliance</span>
+          <span class="skill-tag">Genetec Camera Systems</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Operations</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Tier 2–3 Support</span>
+          <span class="skill-tag">Vendor Coordination</span>
+          <span class="skill-tag">System Documentation</span>
+          <span class="skill-tag">Hardware Troubleshooting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certifications -->
+    <div>
+      <div class="section-title">Certifications</div>
+
+      <div class="cert">
+        <div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+        <div><div class="cert-name">CompTIA Security+</div><div class="cert-issuer">CompTIA</div></div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+        <div><div class="cert-name">CompTIA Network+</div><div class="cert-issuer">CompTIA</div></div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+        <div><div class="cert-name">CompTIA A+</div><div class="cert-issuer">CompTIA</div></div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+        <div><div class="cert-name">ITIL 4 Foundation</div><div class="cert-issuer">Axelos</div></div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+        <div><div class="cert-name">AWS Cloud Practitioner</div><div class="cert-issuer">Amazon Web Services</div></div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+        <div><div class="cert-name">Google IT Support</div><div class="cert-issuer">Google</div></div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+        <div><div class="cert-name">Linux Essentials</div><div class="cert-issuer">LPI</div></div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div>
+      <div class="section-title">Education</div>
+      <div class="edu-item">
+        <div class="edu-degree">B.S. Information Technology</div>
+        <div class="edu-school">Western Governors University</div>
+        <div class="edu-year">In Progress — Senior / 4th Year</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-degree">Undergraduate Studies</div>
+        <div class="edu-school">University of Central Oklahoma</div>
+        <div class="edu-year">General Studies & Finance · 2018–2020</div>
+      </div>
+    </div>
+
+    <!-- Languages -->
+    <div>
+      <div class="section-title">Languages</div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">English</span>
+        <span class="skill-tag highlight">Spanish</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <main>
+
+    <!-- Experience -->
+    <div>
+      <div class="section-title">Experience</div>
+
+      <div class="job">
+        <div class="job-header">
+          <div>
+            <div class="job-title">IT Manager / Systems Administrator</div>
+            <div class="job-company">Oklahoma City Public Property Authority</div>
+          </div>
+          <div class="job-meta">
+            <span class="job-date">February 2025 – Present</span>
+            <span class="job-type">Full-Time</span>
+          </div>
+        </div>
+        <ul class="job-bullets">
+          <li>Manage IT operations, systems administration, and network infrastructure across multiple golf course locations.</li>
+          <li>Administer Windows Server environments, Active Directory, Microsoft 365, VLANs, firewall rules, and UniFi networking infrastructure.</li>
+          <li>Troubleshoot application, connectivity, and OS-level issues involving DNS, DHCP, ports, permissions, and PCI-compliant systems.</li>
+          <li>Support server hardware, RAID configurations, backups, vendor-managed applications, and on-premise infrastructure.</li>
+          <li>Coordinate infrastructure projects, vendors, contractors, and system deployments while maintaining technical documentation and operational continuity.</li>
+          <li>Provide Tier 2–3 technical support for staff, POS systems, networking equipment, surveillance systems, and business-critical operations.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <div>
+            <div class="job-title">IT Help Desk Technician</div>
+            <div class="job-company">Oklahoma City Zoo</div>
+          </div>
+          <div class="job-meta">
+            <span class="job-date">July 2023 – February 2025</span>
+            <span class="job-type">Full-Time</span>
+          </div>
+        </div>
+        <ul class="job-bullets">
+          <li>Provided technical support for Windows environments, Microsoft applications, network infrastructure, and end-user systems across zoo operations.</li>
+          <li>Supported Cisco Meraki networking equipment, switches, Active Directory environments, and animal monitoring systems.</li>
+          <li>Troubleshot hardware, software, and connectivity issues while ensuring operational uptime and user support.</li>
+          <li>Assisted with cybersecurity initiatives including firewall management, access controls, backups, and equipment maintenance.</li>
+          <li>Documented troubleshooting procedures and collaborated with vendors and internal departments to resolve technical issues.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Summary & Projects -->
+    <div>
+      <div class="section-title">Professional Summary</div>
+      <p style="font-size:0.85rem; color:var(--muted); line-height:1.75; margin-bottom: 2rem;">
+        IT professional with experience supporting multi-site infrastructure, systems administration, networking, and end-user support across operational environments. Skilled in Windows Server administration, Active Directory, Microsoft 365, VLAN configuration, firewall troubleshooting, and vendor coordination. Experienced supporting business-critical systems, PCI-compliant environments, and infrastructure projects with a strong focus on troubleshooting, documentation, and operational reliability.
+      </p>
+    </div>
+
+    <div>
+      <div class="section-title">Notable Projects</div>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-name">Multi-Site Network Infrastructure</div>
+          <div class="project-desc">Deployed and maintained UniFi networking, VLANs, and firewall rules across multiple golf course locations for the OKC Public Property Authority.</div>
+          <div class="project-tags">
+            <span class="project-tag">UniFi</span>
+            <span class="project-tag">VLANs</span>
+            <span class="project-tag">Firewall</span>
+            <span class="project-tag">Multi-Site</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-name">PCI-Compliant POS Environment</div>
+          <div class="project-desc">Administered and supported PCI-compliant point-of-sale systems, ensuring secure network segmentation, access controls, and ongoing compliance.</div>
+          <div class="project-tags">
+            <span class="project-tag">PCI Compliance</span>
+            <span class="project-tag">POS Systems</span>
+            <span class="project-tag">Security</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-name">Microsoft 365 Administration</div>
+          <div class="project-desc">Managed Microsoft 365 tenant including user provisioning, licensing, security policies, and integration with on-premise Active Directory environments.</div>
+          <div class="project-tags">
+            <span class="project-tag">M365</span>
+            <span class="project-tag">Active Directory</span>
+            <span class="project-tag">GPO</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-name">Genetec Surveillance Deployment</div>
+          <div class="project-desc">Supported deployment and administration of Genetec camera systems integrated with network infrastructure for physical security operations.</div>
+          <div class="project-tags">
+            <span class="project-tag">Genetec</span>
+            <span class="project-tag">IP Cameras</span>
+            <span class="project-tag">Networking</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <span>References available upon request</span>
+    <span>Jacob Martinez · Oklahoma City, OK · 2025</span>
+  </footer>
+
+</div>
+</body>
+</html>
