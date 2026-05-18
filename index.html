@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="robots" content="noindex, nofollow, noarchive, noimageindex" />
   <title>Verification — Portfolio</title>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6Lc9ne8sAAAAAE2W_k1GocW3PwT76WVK4c3muW2l"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap');
 
@@ -187,7 +187,7 @@
     </div>
     <div class="tag">Access Required</div>
     <h1>Human <span>Verification</span></h1>
-    <p>This portfolio is intended for employers and recruiters. Please complete the verification below to continue.</p>
+    <p>My website portfolio is intended for employers and to help protect against malicious actors. Please complete the verification below to see my info.</p>
 
     <div class="recaptcha-wrap">
       <!--
@@ -199,12 +199,6 @@
         STEP 2: Replace YOUR_SITE_KEY_HERE below
         =====================================================
       -->
-      <div class="g-recaptcha"
-           data-sitekey="6Lc9ne8sAAAAAE2W_k1GocW3PwT76WVK4c3muW2l"
-           data-theme="dark"
-           data-callback="onCaptchaSolved"
-           data-expired-callback="onCaptchaExpired">
-      </div>
     </div>
 
     <button class="btn" id="enter-btn" disabled onclick="enterSite()">
@@ -215,20 +209,15 @@
     <p class="footer-note">Protected against automated scraping. Not indexed by search engines.</p>
   </div>
 
-  <script>
-    function onCaptchaSolved(token) {
-      document.getElementById('enter-btn').disabled = false;
-    }
-
-    function onCaptchaExpired() {
-      document.getElementById('enter-btn').disabled = true;
-    }
-
+<script>
     function enterSite() {
-      const token = grecaptcha.getResponse();
-      if (token) {
-        window.location.href = 'resume.html';
-      }
+      grecaptcha.ready(function() {
+        grecaptcha.execute('6Lc9ne8sAAAAAE2W_k1GocW3PwT76WVK4c3muW2l', {action: 'enter'}).then(function(token) {
+          if (token) {
+            window.location.href = 'resume.html';
+          }
+        });
+      });
     }
   </script>
 </body>
